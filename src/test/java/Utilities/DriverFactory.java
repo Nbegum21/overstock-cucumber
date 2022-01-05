@@ -32,12 +32,13 @@ public class DriverFactory {
         URL gridUrl = null;
         try {
             gridUrl= new URL(ReadConfigFiles.getPropertyValues("gridUrl"));
+            LOGGER.info("Selenium Grid URL:" + gridUrl);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
 
         if (environment.equals("remote") && browser.equals("chrome")) {
-            LOGGER.info("executing the automation scripts in selenium grid using chrome");
+            LOGGER.info("executing the automation scripts in selenium grid using Chrome");
             ChromeOptions chromeOptions = new ChromeOptions();
             return new RemoteWebDriver(gridUrl,chromeOptions);
         } else if (environment.equals("remote") && browser.equals("firefox")) {
